@@ -181,7 +181,7 @@ class ControlWindow(QtGui.QWidget):
 				self.cap = cv2.VideoCapture(self.filename)
 
 				if not self.cap.isOpened():
-					print "could not open :",self.filename
+					print("could not open :",self.filename)
 					return
 
 				self.length = int(self.cap.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -219,9 +219,10 @@ class ControlWindow(QtGui.QWidget):
 		if self.cap:
 			self.endCapture()
 
-		self.filename = QtGui.QFileDialog.getOpenFileName(self, 'Open file',
+		name = QtGui.QFileDialog.getOpenFileName(self, 'Open file',
 						'c:\\',"Video files (*.avi *.mp4 *.MOD)")
-		print os.path.abspath(self.filename)
+		self.filename = name[0]
+		print(os.path.abspath(self.filename))
 		self.filename=os.path.abspath(self.filename)
 		self.startCapture()
 		self.LablePath.setText(self.filename)
@@ -399,7 +400,7 @@ class ControlWindow(QtGui.QWidget):
 		self.TableSumary.setItem(Rat,6, newitem)
 
 		reaching= (suma7/(suma6*1.0))*100
-		print reaching
+		print(reaching)
 		newitem = QtGui.QTableWidgetItem(str(reaching))
 		self.TableSumary.setItem(Rat,7, newitem)
 

@@ -194,8 +194,9 @@ class ControlWindow(QtGui.QWidget):
 		if self.cap:
 			self.endCapture()
 
-		self.filename = QtGui.QFileDialog.getOpenFileName(self, 'Open file',
+		name = QtGui.QFileDialog.getOpenFileName(self, 'Open file',
 						'c:\\',"Video files (*.mp4)")
+		self.filename = name[0]
 		print (self.filename)
 		self.filename=os.path.abspath(self.filename)
 

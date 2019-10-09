@@ -258,8 +258,9 @@ class ControlWindow(QtGui.QWidget):
 		if self.cap:
 			self.endCapture()
 
-		self.filename = QtGui.QFileDialog.getOpenFileName(self, 'Open file',
+		name = QtGui.QFileDialog.getOpenFileName(self, 'Open file',
 						'c:\\',"Video files (*.mp4)")
+		self.filename = name[0]
 		self.filename.replace('/', '\\')
 		self.startCapture()
 		self.LablePath.setText(self.filename)
@@ -337,8 +338,9 @@ class ControlWindow(QtGui.QWidget):
 
 		t = cv2.threshold(blur,self.t_value, 255, cv2.THRESH_BINARY)[1]
 		thresh = cv2.dilate(t, None, iterations=2)
-		_,cnts,_= cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,
+		result = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,
 									 cv2.CHAIN_APPROX_SIMPLE)
+		cnts = result[0]
 		if cnts:
 			areas = [cv2.contourArea(c) for c in cnts]
 			max_index = np.argmax(areas)
@@ -409,8 +411,9 @@ class ControlWindow(QtGui.QWidget):
 
 				t = cv2.threshold(blur,self.t_value, 255, cv2.THRESH_BINARY)[1]
 				thresh = cv2.dilate(t, None, iterations=2)
-				_,cnts,_= cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,
+				result= cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,
 											 cv2.CHAIN_APPROX_SIMPLE)
+				cnts = result[0]
 				if cnts:
 					areas = [cv2.contourArea(c) for c in cnts]
 					max_index = np.argmax(areas)
