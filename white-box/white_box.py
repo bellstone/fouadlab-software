@@ -161,7 +161,7 @@ class ControlWindow(QtGui.QWidget):
 				self.cap = cv2.VideoCapture(self.filename)
 
 				if not self.cap.isOpened():
-					print ("could not open :",self.filename)
+					print("could not open :",self.filename)
 					self.getfile()
 					return
 
@@ -197,7 +197,7 @@ class ControlWindow(QtGui.QWidget):
 		name = QtGui.QFileDialog.getOpenFileName(self, 'Open file',
 						'c:\\',"Video files (*.mp4)")
 		self.filename = name[0]
-		print (self.filename)
+		print(self.filename)
 		self.filename=os.path.abspath(self.filename)
 
 		self.startCapture()

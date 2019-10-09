@@ -226,7 +226,7 @@ class ControlWindow(QtGui.QWidget):
 				self.cap = cv2.VideoCapture(str(self.filename))
 
 				if not self.cap.isOpened():
-					print "could not open :",self.filename
+					print("could not open :",self.filename)
 					self.getfile()
 					return
 
